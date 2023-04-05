@@ -1,0 +1,68 @@
+
+variables:
+  ORD_SOUMET_CPUS: "4"
+  ORD_SOUMET_M: "4G"
+  ORD_SOUMET_TMPFS: "3999"
+  doc_install_dir: "/home/spst900/public_html/fstcatalog/${CI_BUILD_REF_NAME}"
+  latest_doc_install_dir: "/home/spst900/public_html/fstcatalog/latest"
+  deploy_dir_prefix: /fs/site5/eccc/cmd/w/spst900/spooki/CI_fstcatalog/${CI_BUILD_REF_NAME}
+
+
+stages:
+  - make_doc
+  - install_doc
+
+
+# default:
+# when 'default' becomes supported, uncomment the above line, delete this line, and indent the before_script part.
+before_script:
+  - export ORDENV_SITE_PROFILE=20220214
+  - export ORDENV_COMM_PROFILE=eccc/20220217
+  - export ORDENV_GROUP_PROFILE=eccc/cmc/1.9.7
+  - . /fs/ssm/main/env/ordenv-boot-20201118.sh
+  - export EC_ATOMIC_PROFILE_VERSION=1.15.0
+  - . $ARMNLIB_SHARE/check_profile_1.1.0
+  - . ssmuse-sh -p /fs/ssm/eccc/cmd/cmds/env/python/py39_2022.09.29_all
+  - . r.load.dot /fs/ssm/eccc/cmd/cmds/fstpy/bundle/20220600
+  - . ssmuse-sh -x eccc/crd/ccmr/EC-CAS/fstd2nc/0.20230328.0
+  - . r.load.dot eccc/mrd/rpn/MIG/ENV/rpnpy/2.1.6 main/opt/intelcomp/inteloneapi-2022.1.2/intelcomp+mpi+mkl
+  - . ssmuse-sh -d eccc/cmo/cmoi/base/20221021
+
+
+make_doc:
+  stage: make_doc
+  script:
+
+    - type -a python
+    - cd doc
+    - make clean
+    - make doc
+  artifacts:
+    paths:
+      - doc/_build/html
+
+
+install_doc:
+  stage: install_doc
+  script:
+    - cd doc/_build/html
+    - cdir=`pwd`
+    - rm -rf ${doc_install_dir}
+    - mkdir -p ${doc_install_dir}
+    - cp -r ${cdir}/* ${doc_install_dir}
+    - echo "Installed in ${doc_install_dir}"
+    - echo "Visit http://web.science.gc.ca/~spst900/fstcatalog/${CI_BUILD_REF_NAME}"
+
+install_latest_doc:
+  stage: install_doc
+  only:
+      - master
+  script:
+    - cd doc/_build/html
+    - cdir=`pwd`
+    - rm -rf ${latest_doc_install_dir}
+    - mkdir -p ${latest_doc_install_dir}
+    - cp -r ${cdir}/* ${latest_doc_install_dir}
+    - echo "Installed in ${latest_doc_install_dir}"
+    - echo "Visit http://web.science.gc.ca/~spst900/fstcatalog/latest"
+
