@@ -12,7 +12,7 @@
       .. #currentmodule:: fstcatalog
       .. #autofuntion:: __init__
 
-.. include:: README.md
+.. include:: README.rst
 
 **Modules**
 
