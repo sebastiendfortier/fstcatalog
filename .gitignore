@@ -1,3 +1,6 @@
 *.zip
 _build
-
+*-checkpoint.py
+*.yaml
+.ipynb_checkpoints
+.vscode
