@@ -85,7 +85,7 @@ setup(
         'pandas>=1.5.3',
         'pyproj>=3.3.1',
         'xarray>=2023.2.0'
-    ]
+    ],
     classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Console',
