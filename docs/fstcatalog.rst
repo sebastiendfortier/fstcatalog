@@ -2,5 +2,5 @@
 Fst Catalog
 ===========
 
-.. automodule:: fstcatalog 
+.. automodule:: fstcatalog.__init__
    :members:
