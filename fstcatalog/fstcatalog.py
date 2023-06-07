@@ -53,18 +53,16 @@ class FstCatalog:
     :raises FstCatalogError: _description_
     """
 
-    def __init__(self, files: "Path|str|list[Path]|list[str]", by_var=True) -> None:
+    def __init__(self, files: "Path|str|list[Path]|list[str]") -> None:
         """
         Initializes a new instance of the FstCatalog class.
 
         :param files: fst files to catalog
         :type files: Path|str|list[Path]|list[str]
-        :param by_var: by variable, defaults to True
-        :type by_var: bool, optional
         :raises FstCatalogError: if filenames are not str or Path|str|list[Path]|list[str]
         """
         self._files = files
-        self._by_var = by_var
+        self._by_var = True # (get back yo this later)
         if isinstance(self._files, Path):
             self._files = [str(self._files.absolute())]
         elif isinstance(self._files, str):
