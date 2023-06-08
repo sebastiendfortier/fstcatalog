@@ -28,6 +28,8 @@ before_script:
   - . r.load.dot eccc/mrd/rpn/MIG/ENV/rpnpy/2.1.6 main/opt/intelcomp/inteloneapi-2022.1.2/intelcomp+mpi+mkl
   - . ssmuse-sh -d eccc/cmo/cmoi/base/20221021
   - . ssmuse-sh -x cmd/cmds/cmcdict/202305/00
+  - export http_proxy=http://webproxy.science.gc.ca:8888/
+  - export https_proxy=http://webproxy.science.gc.ca:8888/
   - python -m pip install intake
 
 
