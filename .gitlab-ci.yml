@@ -27,6 +27,7 @@ before_script:
   - . ssmuse-sh -x eccc/crd/ccmr/EC-CAS/fstd2nc/0.20230328.0
   - . r.load.dot eccc/mrd/rpn/MIG/ENV/rpnpy/2.1.6 main/opt/intelcomp/inteloneapi-2022.1.2/intelcomp+mpi+mkl
   - . ssmuse-sh -d eccc/cmo/cmoi/base/20221021
+  - . ssmuse-sh -x cmd/cmds/cmcdict/202305/00
 
 
 make_doc:
