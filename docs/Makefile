@@ -14,7 +14,7 @@ help:
 	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 doc:
-	make html
+	make html -d
 
 .PHONY: help Makefile
 

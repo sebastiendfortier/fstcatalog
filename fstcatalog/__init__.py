@@ -16,15 +16,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #######################################################################
-# -*- coding: utf-8 -*-
-"""
-This module provides a class for cataloging fst files into an intake catalog.
 
-It also defines the following global variables:
-- _META_DATA: Nomvars for the metadata fields in a fst file
-- _COLUMNS_TO_REMOVE: List of columns that get dropped to clean the dataframe
-"""
-
+__version__ = '2023.06.07'
 
 import os
 import warnings
@@ -49,10 +42,6 @@ warnings.simplefilter('ignore')
 
 fstd2nc.stdout.streams = ('errors',)
 
-
-__version__ = '2023.06.07'
-
-
 _META_DATA = ["^>", ">>", "^^", "!!", "!!SF", "HY", "P0", "PT", "E1"]
 """Nomvars for the metadata fields in a fst file"""
 
@@ -67,7 +56,6 @@ class FstCatalogError(Exception):
 
 class FstCatalog:
     """This class takes a list of files and catalogs (filters and sorts) all fst records into an intake catalog
-
     :param files: fst files to catalog
     :type files: Path|str|list[Path]|list[str]
     :param file_filter: _description_, defaults to None
