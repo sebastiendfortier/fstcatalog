@@ -10,7 +10,7 @@
       * :ref:`search`
 
       .. #currentmodule:: fstcatalog
-      .. #autofuntion:: __init__
+      .. #automodule:: __init__
 
 .. include:: intro.rst
 
